@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const { data, id } = project;
+// Generate clean lowercase slug without extension
+const slug = id.replace(/\.md$/, '').toLowerCase();
+const projectUrl = `/projects/${slug}`;
+const formattedIndex = String(index + 1).padStart(2, '0');
+---
+
+<article
+  class="project-card-sticky sticky top-24 sm:top-28 w-full hairline bg-[var(--card-bg)] text-[var(--ink)] mb-12 sm:mb-20 overflow-hidden shadow-none transition-colors"
+  style={`z-index: ${index + 1};`}
+>
+  <!-- Card Header Strip -->
+  <div class="px-5 sm:px-8 py-3.5 hairline-b flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[var(--muted)] bg-[var(--paper)]">
+    <div class="flex items-center gap-2">
+      <span class="text-[var(--accent)] font-bold">{formattedIndex}</span>
+      <span class="hairline-l pl-2">CASE STUDY</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span>YEAR: {data.year}</span>
+      <span class="text-[var(--accent)]">●</span>
+    </div>
+  </div>
+
+  <div class="p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <!-- Info Column -->
+    <div class="lg:col-span-6 flex flex-col justify-between h-full">
+      <div>
+        <!-- Title -->
+        <h3 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[var(--ink)] mb-4">
+          <a href={projectUrl} class="hover:text-[var(--accent)] transition-colors focus-visible:outline-none inline-flex items-center min-h-[44px]">
+            {data.title}
+          </a>
+        </h3>
+
+        <!-- Summary: Max 20 words per copy rule -->
+        <p class="text-base sm:text-lg text-[var(--muted)] leading-relaxed mb-6">
+          {data.summary}
+        </p>
+
+        <!-- Tags in mono -->
+        <div class="flex flex-wrap gap-2 mb-8" aria-label="Technologies used">
+          {data.tags.map((tag) => (
+            <span class="font-mono text-xs px-2.5 py-1 hairline bg-[var(--paper)] text-[var(--muted)]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Action Links -->
+      <div class="pt-6 hairline-t flex flex-wrap items-center gap-3 font-mono text-xs uppercase">
+        <a
+          href={data.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="touch-target px-4 py-2 bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] hover:text-white transition-colors"
+          aria-label={`Open live site for ${data.title} in a new tab`}
+        >
+          <span>Live Demo ↗</span>
+        </a>
+
+        <a
+          href={projectUrl}
+          class="touch-target px-3 py-2 text-[var(--ink)] hover:text-[var(--accent)] underline underline-offset-4 transition-colors ml-auto"
+        >
+          <span>Overview &amp; Notes →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Media / Cover Column -->
+    <div class="lg:col-span-6">
+      <a href={projectUrl} class="block hairline group overflow-hidden bg-[var(--paper)] focus-visible:outline-none">
+        <div class="aspect-[16/10] overflow-hidden">
+          <Image
+            src={data.cover}
+            alt={`User interface preview of ${data.title} project`}
+            width={960}
+            height={600}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+</article>
+

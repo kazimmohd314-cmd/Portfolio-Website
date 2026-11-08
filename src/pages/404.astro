@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404: Page Not Found — Mohd Kazim"
+  description="The requested page could not be located on this portfolio website."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 text-center">
+    <div class="hairline p-8 sm:p-16 bg-[var(--card-bg)] inline-block w-full">
+      <span class="font-mono text-sm uppercase tracking-widest text-[var(--accent)] font-bold">
+        ERROR // 404
+      </span>
+      <h1 class="font-display font-extrabold text-5xl sm:text-7xl text-[var(--ink)] tracking-tight mt-4 mb-6">
+        PAGE NOT FOUND
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--muted)] max-w-md mx-auto mb-8">
+        The link you followed does not exist or may have been relocated during our portfolio rebuild.
+      </p>
+      <div class="flex justify-center gap-4 font-mono text-xs uppercase">
+        <a
+          href="/"
+          class="touch-target px-6 py-3 bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] hover:text-white transition-colors"
+        >
+          Return to Index ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

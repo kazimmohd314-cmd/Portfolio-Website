@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import profileImg from '../assets/images/mohd-kazim.jpg';
+
+const projects = await getCollection('projects');
+const projectCountFormatted = String(projects.length).padStart(2, '0');
+---
+
+<section id="hero" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-12 sm:pb-20">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    
+    <!-- Left Column: Typography & Intent -->
+    <div class="lg:col-span-8 flex flex-col justify-between">
+      <div>
+        <!-- Metadata Header Tag -->
+        <div class="flex items-center gap-3 font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-6">
+          <span class="text-[var(--accent)] font-bold">00 // INTRO</span>
+          <span>•</span>
+          <span>B.Tech CSE</span>
+          <span>•</span>
+          <span>Lucknow, India</span>
+        </div>
+
+        <!-- Big Tight Headline with clamp() -->
+        <h1 class="font-display font-extrabold text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.92] tracking-[-0.035em] text-[var(--ink)] mb-6">
+          BUILDING RELIABLE SOFTWARE &amp; CLEAN WEB SYSTEMS.
+        </h1>
+
+        <!-- Short Subtitle (Max 2 short sentences, zero buzzwords) -->
+        <p class="text-base sm:text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-8">
+          Mohd Kazim is an undergraduate developer focused on data structures, algorithmic efficiency, and resilient frontend architectures.
+        </p>
+      </div>
+
+      <!-- Editorial Status Strip -->
+      <div class="pt-6 hairline-t flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--muted)]">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-[var(--accent)]"></span>
+          <span>CURRENT STATUS: AVAILABLE FOR INTERNSHIPS</span>
+        </div>
+
+        <a
+          href="#projects"
+          class="touch-target group flex items-center gap-1.5 text-[var(--ink)] hover:text-[var(--accent)] font-semibold transition-colors"
+        >
+          <span>INDEXED PROJECTS [{projectCountFormatted}]</span>
+          <span class="group-hover:translate-y-0.5 transition-transform">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Sharp Editorial Portrait Frame -->
+    <div class="lg:col-span-4">
+      <div class="relative hairline p-2 bg-[var(--card-bg)]">
+        <div class="relative aspect-[4/5] overflow-hidden bg-[var(--paper)]">
+          <Image
+            src={profileImg}
+            alt="Portrait of Mohd Kazim, Software Developer"
+            width={720}
+            height={900}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+        <div class="mt-2 pt-2 hairline-t flex items-center justify-between font-mono text-[11px] text-[var(--muted)] px-1">
+          <span>FIG 01. DEVELOPER</span>
+          <span class="text-[var(--accent)]">26.85°N / 80.95°E</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+

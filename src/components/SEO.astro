@@ -1,0 +1,65 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  jsonLd?: Record<string, any>;
+}
+
+const {
+  title = "Mohd Kazim — Software Developer",
+  description = "Portfolio of Mohd Kazim, a Computer Science undergraduate and software developer in Lucknow, India. Building clean, responsive web applications.",
+  image = "/og-image.png",
+  article = false,
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = Astro.site?.origin || "https://mohdkazim.netlify.app";
+// Canonical URL without trailing slash (except root)
+const canonicalPath = Astro.url.pathname === "/" ? "" : Astro.url.pathname.replace(/\/$/, "");
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
+---
+
+<!-- Global Metadata -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#121212" />
+<meta name="google-site-verification" content="pglCifNfNnqmXwdVU5UKgG1BsIgqBJ03EYAGTpDfYBk" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Mohd Kazim" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:site_name" content="Mohd Kazim Portfolio" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Structured Data (JSON-LD) -->
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}
+

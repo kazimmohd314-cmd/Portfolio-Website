@@ -1,0 +1,93 @@
+---
+const skillCategories = [
+  {
+    index: "01",
+    category: "Languages",
+    skills: ["C / C++", "Python", "JavaScript (ESNext)", "SQL"],
+    description: "Core algorithms, data structures, and type-safe systems programming."
+  },
+  {
+    index: "02",
+    category: "Web Architecture",
+    skills: ["Astro", "React", "HTML5 Semantics", "Tailwind CSS v4", "CSS Modern Specs"],
+    description: "Responsive layouts, static-first builds, and performance-driven UIs."
+  },
+  {
+    index: "03",
+    category: "Workflow & Infrastructure",
+    skills: ["Git & GitHub", "Netlify Deployment", "Vite", "SEO Principles"],
+    description: "Continuous deployment, version control, and search engine optimization."
+  }
+];
+
+const marqueeSkills = [
+  "PYTHON", "REACT", "ASTRO", "DATA STRUCTURES", "TAILWIND CSS", "SQL", "NETLIFY", "GIT", "RESPONSIVE UX", "ALGORITHMS"
+];
+---
+
+<section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <!-- Section Title Strip -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 hairline-b mb-12">
+    <div>
+      <span class="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-bold">
+        02 // PROFICIENCIES
+      </span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[var(--ink)] tracking-tight mt-1">
+        TECHNICAL STACK
+      </h2>
+    </div>
+    <div class="font-mono text-xs text-[var(--muted)]">
+      <span>[LANGUAGES &amp; TOOLS]</span>
+    </div>
+  </div>
+
+  <!-- Editorial Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    {skillCategories.map((group) => (
+      <div class="hairline p-6 sm:p-8 bg-[var(--card-bg)] flex flex-col justify-between">
+        <div>
+          <!-- Header -->
+          <div class="flex items-center justify-between pb-4 hairline-b mb-6 font-mono text-xs">
+            <span class="text-[var(--accent)] font-bold">{group.index}</span>
+            <span class="uppercase text-[var(--muted)]">{group.category}</span>
+          </div>
+
+          <!-- Skills list -->
+          <ul class="space-y-3 mb-8" aria-label={`${group.category} skills`}>
+            {group.skills.map((skill) => (
+              <li class="flex items-center gap-3 font-display font-bold text-lg text-[var(--ink)]">
+                <span class="w-1.5 h-1.5 bg-[var(--accent)] shrink-0"></span>
+                <span>{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p class="font-mono text-xs text-[var(--muted)] leading-relaxed pt-4 hairline-t">
+          {group.description}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Marquee Ticker inside Skills section -->
+  <div class="marquee-wrapper hairline py-4 bg-[var(--paper)]" aria-hidden="true">
+    <div class="marquee-track flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-widest text-[var(--muted)]">
+      {marqueeSkills.map((item) => (
+        <span class="inline-flex items-center gap-8 shrink-0">
+          <span class="text-[var(--ink)] font-semibold">{item}</span>
+          <span class="text-[var(--accent)] font-bold">✦</span>
+        </span>
+      ))}
+    </div>
+    <div class="marquee-track flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-widest text-[var(--muted)]">
+      {marqueeSkills.map((item) => (
+        <span class="inline-flex items-center gap-8 shrink-0">
+          <span class="text-[var(--ink)] font-semibold">{item}</span>
+          <span class="text-[var(--accent)] font-bold">✦</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,62 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentSection?: string;
+}
+---
+
+<header class="sticky top-0 z-50 w-full bg-[var(--paper)] hairline-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <!-- Brand / Name -->
+    <a
+      href="/"
+      class="touch-target group flex items-center gap-2 text-sm sm:text-base font-display font-extrabold tracking-tight text-[var(--ink)]"
+    >
+      <span class="inline-block w-2.5 h-2.5 bg-[var(--accent)]"></span>
+      <span class="uppercase">Mohd Kazim</span>
+    </a>
+
+    <!-- Nav items (Numbered in mono) -->
+    <nav class="hidden md:flex items-center gap-6 font-mono text-xs uppercase" aria-label="Main Navigation">
+      <a href="/#projects" class="touch-target text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+        <span class="text-[var(--accent)] mr-1">01</span>Projects
+      </a>
+      <a href="/#skills" class="touch-target text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+        <span class="text-[var(--accent)] mr-1">02</span>Stack
+      </a>
+      <a href="/#about" class="touch-target text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+        <span class="text-[var(--accent)] mr-1">03</span>About
+      </a>
+      <a href="/#contact" class="touch-target text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+        <span class="text-[var(--accent)] mr-1">04</span>Contact
+      </a>
+    </nav>
+
+    <!-- Right Controls: Status & Theme Toggle -->
+    <div class="flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-2 font-mono text-xs text-[var(--muted)] pr-3 hairline-r">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>LUCKNOW, IN</span>
+      </div>
+      <ThemeToggle />
+    </div>
+  </div>
+
+  <!-- Mobile quick navigation strip -->
+  <div class="md:hidden flex items-center justify-around hairline-t py-1 px-2 font-mono text-[11px] uppercase text-[var(--muted)] bg-[var(--paper)]">
+    <a href="/#projects" class="touch-target py-2 px-2 hover:text-[var(--ink)]">
+      <span class="text-[var(--accent)] mr-0.5">01</span>Work
+    </a>
+    <a href="/#skills" class="touch-target py-2 px-2 hover:text-[var(--ink)]">
+      <span class="text-[var(--accent)] mr-0.5">02</span>Stack
+    </a>
+    <a href="/#about" class="touch-target py-2 px-2 hover:text-[var(--ink)]">
+      <span class="text-[var(--accent)] mr-0.5">03</span>About
+    </a>
+    <a href="/#contact" class="touch-target py-2 px-2 hover:text-[var(--ink)]">
+      <span class="text-[var(--accent)] mr-0.5">04</span>Connect
+    </a>
+  </div>
+</header>
+

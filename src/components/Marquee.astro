@@ -1,0 +1,32 @@
+---
+interface Props {
+  items: string[];
+  reverse?: boolean;
+  class?: string;
+}
+
+const { items, reverse = false, class: className = "" } = Astro.props;
+---
+
+<div class={`marquee-wrapper w-full py-3 hairline-t hairline-b bg-[var(--paper)] ${className}`} aria-hidden="true">
+  <!-- Track 1 (Original) -->
+  <div class={`marquee-track ${reverse ? 'reverse' : ''} flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-widest text-[var(--muted)]`}>
+    {items.map((item) => (
+      <span class="inline-flex items-center gap-8 shrink-0">
+        <span class="hover:text-[var(--ink)] transition-colors">{item}</span>
+        <span class="text-[var(--accent)] font-bold text-sm">✦</span>
+      </span>
+    ))}
+  </div>
+
+  <!-- Track 2 (Duplicate for continuous loop) -->
+  <div class={`marquee-track ${reverse ? 'reverse' : ''} flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-widest text-[var(--muted)]`}>
+    {items.map((item) => (
+      <span class="inline-flex items-center gap-8 shrink-0">
+        <span class="hover:text-[var(--ink)] transition-colors">{item}</span>
+        <span class="text-[var(--accent)] font-bold text-sm">✦</span>
+      </span>
+    ))}
+  </div>
+</div>
+

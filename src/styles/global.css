@@ -1,0 +1,187 @@
+@import "./fonts.css";
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --paper: #F2EFE8;
+    --ink: #121212;
+    --accent: #FF4D1C;
+    --muted: #6B675F;
+    --border: rgba(107, 103, 95, 0.2);
+    --card-bg: #FFFFFF;
+    --color-scheme: light;
+  }
+
+  /* Explicit dark mode class or attribute */
+  :root[data-theme="dark"],
+  html.dark {
+    --paper: #121212;
+    --ink: #F2EFE8;
+    --accent: #FF4D1C;
+    --muted: #9E9A90;
+    --border: rgba(158, 154, 144, 0.22);
+    --card-bg: #181818;
+    --color-scheme: dark;
+  }
+
+  /* Automatic system preference if no explicit theme override is set */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not(.light) {
+      --paper: #121212;
+      --ink: #F2EFE8;
+      --accent: #FF4D1C;
+      --muted: #9E9A90;
+      --border: rgba(158, 154, 144, 0.22);
+      --card-bg: #181818;
+      --color-scheme: dark;
+    }
+  }
+
+  * {
+    border-color: var(--border);
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color-scheme: var(--color-scheme);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* Visible accessible focus rings */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Fluid typography clamp helpers */
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Hairline border utility */
+.hairline-b {
+  border-bottom: 1px solid var(--border);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border);
+}
+
+.hairline {
+  border: 1px solid var(--border);
+}
+
+/* 44px Touch target assurance */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pure CSS Infinite Marquee */
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  display: flex;
+}
+
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-track.reverse {
+  animation: marquee-scroll-reverse 28s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Section reveals (12-16px fade-up once) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeUpReveal {
+    from {
+      opacity: 0.1;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal-animate {
+    animation: fadeUpReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: opacity, transform;
+  }
+}
+
+/* Strict prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}

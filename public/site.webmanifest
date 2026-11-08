@@ -1,0 +1,17 @@
+{
+  "name": "Mohd Kazim | Software Developer",
+  "short_name": "Mohd Kazim",
+  "description": "Portfolio of Mohd Kazim, Software Developer & Computer Science Student",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2EFE8",
+  "theme_color": "#121212",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

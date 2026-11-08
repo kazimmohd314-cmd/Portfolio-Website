@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import ProjectStack from '../components/ProjectStack.astro';
+import Skills from '../components/Skills.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohd Kazim",
+  "url": "https://mohdkazim.netlify.app",
+  "jobTitle": "Software Developer",
+  "sameAs": [
+    "https://github.com/kazimmohd314-cmd",
+    "https://linkedin.com/in/mohd-kazim-47a209301"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lucknow",
+    "addressCountry": "India"
+  }
+};
+
+const marqueeHeroItems = [
+  "C++ SYSTEMS", "REACT & ASTRO", "TYPESCRIPT", "DATA STRUCTURES", "TAILWIND CSS", "NETLIFY", "SQL", "ALGORITHMS", "RESPONSIVE ARCHITECTURE"
+];
+---
+
+<BaseLayout
+  title="Mohd Kazim — Software Developer & CSE Student"
+  description="Official portfolio of Mohd Kazim, Computer Science sophomore in Lucknow, India. Featuring projects in React, C++, and systems engineering."
+  jsonLd={personSchema}
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Infinite Marquee under Hero -->
+  <Marquee items={marqueeHeroItems} />
+
+  <!-- 01 Projects: Sticky Stacked Cards -->
+  <div class="reveal-on-scroll">
+    <ProjectStack />
+  </div>
+
+  <!-- 02 Skills: Technical Stack Grid & Ticker -->
+  <div class="reveal-on-scroll">
+    <Skills />
+  </div>
+
+  <!-- 03 About: Background & Dossier -->
+  <div class="reveal-on-scroll">
+    <About />
+  </div>
+
+  <!-- 04 Contact: Big Email & Channels -->
+  <div class="reveal-on-scroll">
+    <Contact />
+  </div>
+</BaseLayout>
+

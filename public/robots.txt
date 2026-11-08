@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mohdkazim.netlify.app/sitemap-index.xml
+

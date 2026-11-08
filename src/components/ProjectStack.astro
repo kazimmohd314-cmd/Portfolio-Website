@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <!-- Section Title Strip -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 hairline-b mb-12">
+    <div>
+      <span class="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-bold">
+        01 // PORTFOLIO
+      </span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[var(--ink)] tracking-tight mt-1">
+        SELECTED PROJECTS
+      </h2>
+    </div>
+    <div class="font-mono text-xs text-[var(--muted)]">
+      <span>[{sortedProjects.length} ARCHIVED WORKS]</span>
+    </div>
+  </div>
+
+  <!-- Sticky Stack Cards Container -->
+  <div class="relative w-full">
+    {sortedProjects.map((project, index) => (
+      <ProjectCard project={project} index={index} />
+    ))}
+  </div>
+</section>
+
+<script>
+  import { initProjectStack } from '../scripts/project-stack';
+
+  // Initialize GSAP stacked scroll when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectStack);
+  } else {
+    initProjectStack();
+  }
+</script>
+

@@ -1,0 +1,18 @@
+# Canonical host enforcement
+http://mohdkazim.netlify.app/* https://mohdkazim.netlify.app/:splat 301!
+https://www.mohdkazim.netlify.app/* https://mohdkazim.netlify.app/:splat 301!
+
+# Legacy sitemap redirect
+/sitemap.xml /sitemap-index.xml 301
+
+# Clean project shortcuts
+/studyplanner /projects/studyplanner 301
+/befit-gym /projects/befit-gym 301
+/skill1swap /projects/skill1swap 301
+/skillswap /projects/skill1swap 301
+
+# Deprecated projects graceful redirects to portfolio
+/detaltree / 301
+/qidarcatering / 301
+/catering / 301
+/dental / 301
